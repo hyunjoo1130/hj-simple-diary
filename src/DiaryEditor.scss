@@ -1,0 +1,63 @@
+// ⭐️ scss 로 스타일링 할 때는, css 로 자동 빌드 되게 watch scss 키고 작업하기!
+
+.DiaryEditor {
+  width: 60%;
+  padding: 80px;
+  margin: 50px auto;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+
+  h1 {
+    font-size: 40px;
+    color: #333;
+  }
+
+  input {
+    width: 30%;
+    height: 20px;
+    padding: 5px;
+    margin: 30px;
+    text-align: center;
+  }
+
+  textarea {
+    width: 70%;
+    height: 300px;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .emotionBox {
+    margin: 10px;
+
+    .txt {
+      margin-right: 30px;
+      color: #7c7c7c;
+    }
+
+    select {
+      width: 70px;
+      text-align: center;
+    }
+  }
+
+  .submitBtn {
+    .btn {
+      width: 120px;
+      padding: 10px 20px;
+      margin-top: 40px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: #d7d7d7;
+      }
+    }
+  }
+}

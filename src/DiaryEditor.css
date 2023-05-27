@@ -1,0 +1,50 @@
+.DiaryEditor {
+  width: 60%;
+  padding: 80px;
+  margin: 50px auto;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+}
+.DiaryEditor h1 {
+  font-size: 40px;
+  color: #333;
+}
+.DiaryEditor input {
+  width: 30%;
+  height: 20px;
+  padding: 5px;
+  margin: 30px;
+  text-align: center;
+}
+.DiaryEditor textarea {
+  width: 70%;
+  height: 300px;
+  padding: 20px;
+  margin: 10px;
+}
+.DiaryEditor .emotionBox {
+  margin: 10px;
+}
+.DiaryEditor .emotionBox .txt {
+  margin-right: 30px;
+  color: #7c7c7c;
+}
+.DiaryEditor .emotionBox select {
+  width: 70px;
+  text-align: center;
+}
+.DiaryEditor .submitBtn .btn {
+  width: 120px;
+  padding: 10px 20px;
+  margin-top: 40px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+.DiaryEditor .submitBtn .btn:hover {
+  background-color: #d7d7d7;
+}/*# sourceMappingURL=DiaryEditor.css.map */
