@@ -1,11 +1,11 @@
 // ⭐️ scss 로 스타일링 할 때는, css 로 자동 빌드 되게 watch scss 키고 작업하기!
 
 .DiaryEditor {
-  width: 60%;
-  padding: 80px;
+  width: 50%;
+  padding: 70px;
   margin: 50px auto;
-  border: 3px solid #eee;
   border-radius: 10px;
+  background-color: #fff;
   text-align: center;
 
   h1 {
@@ -17,12 +17,12 @@
     width: 30%;
     height: 20px;
     padding: 5px;
-    margin: 30px;
+    margin: 15px 0 20px;
     text-align: center;
   }
 
   textarea {
-    width: 70%;
+    width: 80%;
     height: 300px;
     padding: 20px;
     margin: 10px;

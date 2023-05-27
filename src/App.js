@@ -3,7 +3,7 @@ import DiaryEditor from "./DiaryEditor";
 
 function App() {
   return (
-    <div className="App2">
+    <div className="App">
       <DiaryEditor />
     </div>
   );
