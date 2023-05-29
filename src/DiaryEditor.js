@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./DiaryEditor.scss";
 
 function DiaryEditor() {
@@ -7,6 +7,10 @@ function DiaryEditor() {
     content: "",
     emotion: 1,
   });
+
+  // useRef: React.MutableRefObject 의 역할은 dom요소에 접근할 수 있는 기능
+  const authorInput = useRef();
+  const contentArea = useRef();
 
   const handleChangeState = (e) => {
     setState({
@@ -17,7 +21,15 @@ function DiaryEditor() {
   };
 
   const handleSubmit = () => {
-    console.log(state);
+    if (state.author.length < 1) {
+      authorInput.current.focus();
+      return;
+    }
+
+    if (state.content.length < 5) {
+      contentArea.current.focus();
+      return;
+    }
     alert("오늘의 일기가 저장되었습니다!");
   };
 
@@ -26,14 +38,20 @@ function DiaryEditor() {
       <h1>My Today's Diary</h1>
       <div className="authorBox">
         <input
+          ref={authorInput}
+          className="authorInput"
           name="author"
+          placeholder="작성자"
           value={state.author}
           onChange={handleChangeState}
         />
       </div>
       <div className="contentBox">
         <textarea
+          ref={contentArea}
+          className="contentArea"
           name="content"
+          placeholder="글을 5자 이상 작성해주세요"
           value={state.content}
           onChange={handleChangeState}
         />
@@ -54,7 +72,7 @@ function DiaryEditor() {
       </div>
       <div className="submitBtn">
         <button className="btn" onClick={handleSubmit}>
-          일기 저장
+          <span>일기 저장</span>
         </button>
       </div>
     </div>

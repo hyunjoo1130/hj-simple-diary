@@ -13,19 +13,43 @@
     color: #333;
   }
 
-  input {
+  .authorInput {
     width: 30%;
     height: 20px;
-    padding: 5px;
+    padding: 8px;
     margin: 15px 0 20px;
     text-align: center;
+    border: 1px solid #888;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+
+    &:focus {
+      border: 2px solid #333;
+    }
+
+    &::placeholder {
+      color: #bbb;
+    }
   }
 
-  textarea {
+  .contentArea {
     width: 80%;
     height: 300px;
     padding: 20px;
     margin: 10px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    outline: none;
+
+    &:focus {
+      border: 2px solid #333;
+    }
+
+    &::placeholder {
+      color: #bbb;
+    }
   }
 
   .emotionBox {
@@ -38,6 +62,7 @@
 
     select {
       width: 70px;
+      padding: 3px;
       text-align: center;
     }
   }
@@ -53,6 +78,14 @@
       font-weight: bold;
       color: #333;
 
+      cursor: pointer;
+
+      &:hover {
+        background-color: #d7d7d7;
+      }
+    }
+
+    span {
       cursor: pointer;
 
       &:hover {

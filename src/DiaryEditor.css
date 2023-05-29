@@ -10,18 +10,44 @@
   font-size: 40px;
   color: #333;
 }
-.DiaryEditor input {
+.DiaryEditor .authorInput {
   width: 30%;
   height: 20px;
-  padding: 5px;
+  padding: 8px;
   margin: 15px 0 20px;
   text-align: center;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
 }
-.DiaryEditor textarea {
+.DiaryEditor .authorInput:focus {
+  border: 2px solid #333;
+}
+.DiaryEditor .authorInput::-moz-placeholder {
+  color: #bbb;
+}
+.DiaryEditor .authorInput::placeholder {
+  color: #bbb;
+}
+.DiaryEditor .contentArea {
   width: 80%;
   height: 300px;
   padding: 20px;
   margin: 10px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  outline: none;
+}
+.DiaryEditor .contentArea:focus {
+  border: 2px solid #333;
+}
+.DiaryEditor .contentArea::-moz-placeholder {
+  color: #bbb;
+}
+.DiaryEditor .contentArea::placeholder {
+  color: #bbb;
 }
 .DiaryEditor .emotionBox {
   margin: 10px;
@@ -32,6 +58,7 @@
 }
 .DiaryEditor .emotionBox select {
   width: 70px;
+  padding: 3px;
   text-align: center;
 }
 .DiaryEditor .submitBtn .btn {
@@ -46,5 +73,11 @@
   cursor: pointer;
 }
 .DiaryEditor .submitBtn .btn:hover {
+  background-color: #d7d7d7;
+}
+.DiaryEditor .submitBtn span {
+  cursor: pointer;
+}
+.DiaryEditor .submitBtn span:hover {
   background-color: #d7d7d7;
 }/*# sourceMappingURL=DiaryEditor.css.map */
