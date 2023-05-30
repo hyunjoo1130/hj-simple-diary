@@ -12,7 +12,18 @@
 
   .contentContainer {
     .contentInner {
-      padding: 20px;
+      padding: 20px 30px;
+
+      .editContent {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        outline: none;
+
+        &:focus {
+          border: 2px solid #333;
+        }
+      }
 
       .content {
         padding: 10px 0;
@@ -22,8 +33,35 @@
 
   .date {
     padding: 13px 20px;
-    text-align: right;
     font-size: 14px;
     color: #888;
+  }
+
+  .contentFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+
+    .btnBox {
+      margin-left: 20px;
+
+      button {
+        width: 65px;
+        padding: 6px 8px 5px 8px;
+        margin-right: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: #d7d7d7;
+        }
+      }
+    }
   }
 }

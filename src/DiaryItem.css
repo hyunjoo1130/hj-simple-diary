@@ -10,14 +10,45 @@
   padding: 20px;
 }
 .DiaryItem .contentContainer .contentInner {
-  padding: 20px;
+  padding: 20px 30px;
+}
+.DiaryItem .contentContainer .contentInner .editContent {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+}
+.DiaryItem .contentContainer .contentInner .editContent:focus {
+  border: 2px solid #333;
 }
 .DiaryItem .contentContainer .contentInner .content {
   padding: 10px 0;
 }
 .DiaryItem .date {
   padding: 13px 20px;
-  text-align: right;
   font-size: 14px;
   color: #888;
+}
+.DiaryItem .contentFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+.DiaryItem .contentFooter .btnBox {
+  margin-left: 20px;
+}
+.DiaryItem .contentFooter .btnBox button {
+  width: 65px;
+  padding: 6px 8px 5px 8px;
+  margin-right: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+.DiaryItem .contentFooter .btnBox button:hover {
+  background-color: #d7d7d7;
 }/*# sourceMappingURL=DiaryItem.css.map */

@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import "./DiaryEditor.scss";
 
-function DiaryEditor() {
+function DiaryEditor({ onCreate }) {
   const [state, setState] = useState({
-    author: "",
+    author: "앙두",
     content: "",
     emotion: 1,
   });
+
+  const { author, content, emotion } = state;
 
   // useRef: React.MutableRefObject 의 역할은 dom요소에 접근할 수 있는 기능
   const authorInput = useRef();
@@ -21,16 +23,24 @@ function DiaryEditor() {
   };
 
   const handleSubmit = () => {
-    if (state.author.length < 1) {
+    if (author.length < 1) {
       authorInput.current.focus();
       return;
     }
 
-    if (state.content.length < 5) {
+    if (content.length < 5) {
       contentArea.current.focus();
       return;
     }
+
+    onCreate(author, content, emotion);
     alert("오늘의 일기가 저장되었습니다!");
+    // 에디터에 남아 있는 기존 글 초기화(reset)
+    setState({
+      author: "앙두",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (
@@ -42,7 +52,7 @@ function DiaryEditor() {
           className="authorInput"
           name="author"
           placeholder="작성자"
-          value={state.author}
+          value={author}
           onChange={handleChangeState}
         />
       </div>
@@ -52,17 +62,13 @@ function DiaryEditor() {
           className="contentArea"
           name="content"
           placeholder="글을 5자 이상 작성해주세요"
-          value={state.content}
+          value={content}
           onChange={handleChangeState}
         />
       </div>
       <div className="emotionBox">
         <span className="txt">나의 오늘의 감정을 숫자로 표현해보세요 :)</span>
-        <select
-          name="emotion"
-          value={state.emotion}
-          onChange={handleChangeState}
-        >
+        <select name="emotion" value={emotion} onChange={handleChangeState}>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>

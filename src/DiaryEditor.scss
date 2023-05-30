@@ -15,7 +15,6 @@
 
   .authorInput {
     width: 30%;
-    height: 20px;
     padding: 8px;
     margin: 15px 0 20px;
     text-align: center;
@@ -70,10 +69,10 @@
   .submitBtn {
     .btn {
       width: 120px;
-      padding: 10px 20px;
+      padding: 12px 20px 10px;
       margin-top: 40px;
       border: 1px solid #eee;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 16px;
       font-weight: bold;
       color: #333;
