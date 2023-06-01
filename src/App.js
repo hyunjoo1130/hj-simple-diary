@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
+
+// https://jsonplaceholder.typicode.com/comments
 
 function App() {
   const [data, setData] = useState([]);
@@ -14,6 +16,28 @@ function App() {
   // state로 렌더링이 발생할 때 마다 초기화 되지 않는다. useRef()훅의 주요 동작 원리이다.
   // 그리하여, useRef()는 변수의 값을 저장하고 있다가 useState를 통해 페이지가 ReRendering될 때 변경된 값을 확인 할 수 있는 것이다.
   let dataId = useRef(1);
+
+  const postData = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((res) => res.json())
+      .then((res) => {
+        const initData = res.slice(0, 20).map((el) => {
+          return {
+            writer: el.name.slice(0, 10),
+            content: el.body,
+            emotion: Math.floor(Math.random() * 5) + 1,
+            created_at: new Date().getTime(),
+            id: dataId.current++,
+          };
+        });
+
+        setData(initData);
+      });
+  };
+
+  useEffect(() => {
+    postData();
+  }, []);
 
   const onCreate = (writer, content, emotion) => {
     const created_at = new Date().getTime();
