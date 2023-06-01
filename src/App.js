@@ -18,7 +18,7 @@ function App() {
   let dataId = useRef(1);
 
   const postData = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/comments")
+    await fetch("https://jsonplaceholder.typicode.com/comments")
       .then((res) => res.json())
       .then((res) => {
         const initData = res.slice(0, 20).map((el) => {
@@ -48,7 +48,6 @@ function App() {
       emotion,
       created_at,
     };
-    dataId.current += 1;
     setData([createData, ...data]);
   };
 
