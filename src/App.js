@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
+import OptimizeTest from "./OptimizeTest";
+import OptimizeTest2 from "./OptimizeTest2";
 
 function App() {
   const [data, setData] = useState([]);
@@ -70,8 +72,6 @@ function App() {
   // ❗️ 가장 많이 하는 실수 : useMemo 는 콜백함수를 실행함으로, return 값을 반환받게 되고, 그 값이 식별자에 할당된다. 그렇기 때문에, 더 이상 getDataAnalaysis는 함수가 아닌 값을 할당받은 변수가 된다.
   // => getDataAnalaysis() x , getDataAnalaysis o
   const getDataAnalaysis = useMemo(() => {
-    console.log("일기 분석 시작!");
-
     const goodEmotionDiary = data.filter((el) => el.emotion >= 3).length;
     const badEmotionDiary = data.length - goodEmotionDiary;
     const goodEmotionRatio = parseInt((goodEmotionDiary / data.length) * 100);
@@ -86,6 +86,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <OptimizeTest2 /> */}
       <DiaryEditor onCreate={onCreate} />
       <div>
         <p>좋은 감정 일기 : {goodEmotionDiary}개</p>
