@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
-import "./DiaryEditor.scss";
+import React, { useEffect, useRef, useState } from 'react';
+import './DiaryEditor.scss';
 
 function DiaryEditor({ onCreate }) {
   const [state, setState] = useState({
-    author: "앙두",
-    content: "",
+    author: '앙두',
+    content: '',
     emotion: 1,
   });
 
@@ -34,41 +34,41 @@ function DiaryEditor({ onCreate }) {
     }
 
     onCreate(author, content, emotion);
-    alert("오늘의 일기가 저장되었습니다!");
+    alert('오늘의 일기가 저장되었습니다!');
     // 에디터에 남아 있는 기존 글 초기화(reset)
     setState({
-      author: "앙두",
-      content: "",
+      author: '앙두',
+      content: '',
       emotion: 1,
     });
   };
 
   return (
-    <div className="DiaryEditor">
+    <div className='DiaryEditor'>
       <h1>My Today's Diary</h1>
-      <div className="authorBox">
+      <div className='authorBox'>
         <input
           ref={authorInput}
-          className="authorInput"
-          name="author"
-          placeholder="작성자"
+          className='authorInput'
+          name='author'
+          placeholder='작성자'
           value={author}
           onChange={handleChangeState}
         />
       </div>
-      <div className="contentBox">
+      <div className='contentBox'>
         <textarea
           ref={contentArea}
-          className="contentArea"
-          name="content"
-          placeholder="글을 5자 이상 작성해주세요"
+          className='contentArea'
+          name='content'
+          placeholder='글을 5자 이상 작성해주세요'
           value={content}
           onChange={handleChangeState}
         />
       </div>
-      <div className="emotionBox">
-        <span className="txt">나의 오늘의 감정을 숫자로 표현해보세요 :)</span>
-        <select name="emotion" value={emotion} onChange={handleChangeState}>
+      <div className='emotionBox'>
+        <span className='txt'>나의 오늘의 감정을 숫자로 표현해보세요 :)</span>
+        <select name='emotion' value={emotion} onChange={handleChangeState}>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -76,8 +76,8 @@ function DiaryEditor({ onCreate }) {
           <option value={5}>5</option>
         </select>
       </div>
-      <div className="submitBtn">
-        <button className="btn" onClick={handleSubmit}>
+      <div className='submitBtn'>
+        <button className='btn' onClick={handleSubmit}>
           <span>일기 저장</span>
         </button>
       </div>
@@ -85,4 +85,5 @@ function DiaryEditor({ onCreate }) {
   );
 }
 
-export default DiaryEditor;
+// 위에서 묶기에 위아래 왔다갔다 귀찮다면, 이 밑에서 이렇게 React.memo 를 해줄 수도 있음!
+export default React.memo(DiaryEditor);

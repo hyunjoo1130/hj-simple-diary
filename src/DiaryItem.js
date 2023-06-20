@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import "./DiaryItem.scss";
+import React, { useEffect, useRef, useState } from 'react';
+import './DiaryItem.scss';
 
 function DiaryItem({
   id,
@@ -10,6 +10,10 @@ function DiaryItem({
   onRemove,
   onEdit,
 }) {
+  useEffect(() => {
+    console.log('diaryItem 렌더링');
+  });
+
   const [isEdit, setIsEdit] = useState(false);
   const [editContent, setEditContent] = useState(content);
   const editContentInput = useRef();
@@ -36,53 +40,53 @@ function DiaryItem({
   };
 
   return (
-    <div className="DiaryItem">
-      <p className="author">
+    <div className='DiaryItem'>
+      <p className='author'>
         <span>
-          <span style={{ fontWeight: "700" }}>작성자 :</span> {writer}
+          <span style={{ fontWeight: '700' }}>작성자 :</span> {writer}
         </span>
         <span>
-          <span style={{ fontWeight: "700" }}>감정점수 :</span> {emotion}점
+          <span style={{ fontWeight: '700' }}>감정점수 :</span> {emotion}점
         </span>
       </p>
       <hr />
-      <div className="contentContainer">
-        <div className="contentInner">
+      <div className='contentContainer'>
+        <div className='contentInner'>
           {isEdit ? (
             <>
               <textarea
                 ref={editContentInput}
-                className="editContent"
+                className='editContent'
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
               />
             </>
           ) : (
             <>
-              <p className="content">{content}</p>
+              <p className='content'>{content}</p>
             </>
           )}
         </div>
       </div>
       <hr />
-      <div className="contentFooter">
-        <div className="btnBox">
+      <div className='contentFooter'>
+        <div className='btnBox'>
           {isEdit ? (
-            <div className="editBtns">
+            <div className='editBtns'>
               <button onClick={handleCancelEdit}>취소</button>
               <button onClick={handleEdit}>완료</button>
             </div>
           ) : (
-            <div className="contentBtns">
+            <div className='contentBtns'>
               <button onClick={handleRemove}>삭제</button>
               <button onClick={toggleIsEdit}>수정</button>
             </div>
           )}
         </div>
-        <p className="date">{new Date(created_at).toLocaleString()}</p>
+        <p className='date'>{new Date(created_at).toLocaleString()}</p>
       </div>
     </div>
   );
 }
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
