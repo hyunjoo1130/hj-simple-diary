@@ -1,13 +1,17 @@
-import React from "react";
-import "./DiaryList.scss";
-import DiaryItem from "./DiaryItem";
+import React, { useContext } from 'react';
+import './DiaryList.scss';
+import DiaryItem from './DiaryItem';
+import { DiaryDispatchContext, DiaryStateContext } from './App';
 
-function DiaryList({ data, onRemove, onEdit }) {
+function DiaryList() {
+  const data = useContext(DiaryStateContext);
+  const { onRemove, onEdit } = useContext(DiaryDispatchContext);
+
   return (
-    <div className="DiaryList">
+    <div className='DiaryList'>
       <h1>My Diary List</h1>
       <h3>{data.length}개의 일기가 있습니다.</h3>
-      <div className="diaryPostBox">
+      <div className='diaryPostBox'>
         {data.map((el) => {
           return (
             <DiaryItem

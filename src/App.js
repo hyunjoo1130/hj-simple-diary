@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react';
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
@@ -40,9 +46,11 @@ const reducer = (state, action) => {
   }
 };
 
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
+
 function App() {
   // const [data, setData] = useState([]);
-
   const [data, dispatch] = useReducer(reducer, []);
 
   // ⭐️ 변수를 사용하면, 리렌더 될 때마다 값이 초기화되어 다시 0이 되기 때문에
@@ -82,7 +90,6 @@ function App() {
       type: 'CREATE',
       data: { id: dataId.current, writer, content, emotion },
     });
-    dataId.current += 1;
     // const created_at = new Date().getTime();
     // const createData = {
     //   id: dataId.current,
@@ -120,14 +127,29 @@ function App() {
     // );
   }, []);
 
+  // 첫 렌더링 제외, 렌더링 때마다, 재생성되지 않도록 useMemo 로 묶어줘야 함
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onEdit, onRemove };
+  }, []);
+
   return (
-    <div className='App'>
-      {/* <OptimizeTest2 /> */}
-      <DiaryEditor onCreate={onCreate} />
-      <DiaryList data={data} onRemove={onRemove} onEdit={onEdit} />
-      <DataAnalasys data={data} />
-    </div>
+    // DiaryStateContext.Provider 의 value 로 props 를 내려주면, 컴포넌트 내 어디서나 useContext 로 불러와 사용할 수 있다.
+    // 굳이 props drilling 을 하지 않아도 됨!
+    // 그러나 data 는 계속 변경되는 데이터이기 때문에, 다른 함수들이랑 같이 내려주면 지속적인 렌더링으로 이미 설정해놓은 최적화들이 다 풀릴 위험이 있다.
+    // 그럴경우 DiaryDispatchContext.Provider 처럼 하나 더 만들어, 변경되지 않은 데이터들만 또 넘겨주면 된다. 😇 Context 쫌 어렵당.
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider value={memoizedDispatches}>
+        <div className='App'>
+          {/* <OptimizeTest2 /> */}
+          <DiaryEditor />
+          {/* onRemove나 onEdit같은 props drilling 으로 인해 거쳐가기만 하는 함수들을 Context 로 해결할 수 있다. */}
+          <DiaryList />
+          <DataAnalasys data={data} />
+        </div>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
   );
 }
 
+// export default 는 한 문서에서 한 번 밖에 못씁니다.
 export default App;
